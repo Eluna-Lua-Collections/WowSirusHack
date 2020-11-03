@@ -2,11 +2,29 @@
 #include <iostream>
 HMODULE hInstDll;
 
+void CreateConsole()
+{
+	AllocConsole();
+	FILE *f;
+	freopen_s(&f, "CONOUT$", "w", stdout);
+}
+
 
 void Inject()
 {
+	CreateConsole();
+	std::cout << "INJECTED" << '\n';
 
-
+	while (!GetAsyncKeyState(VK_DELETE) & 1)
+	{
+		if (GetAsyncKeyState(VK_INSERT) & 1)
+		{
+		
+		}
+	}
+	std::cout << "UNINJECT" << '\n';
+	FreeConsole();
+	FreeLibraryAndExitThread(hInstDll, 0);
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)  
