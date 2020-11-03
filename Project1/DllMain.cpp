@@ -22,26 +22,26 @@ void Inject()
 		
 		}
 	}
-	std::cout << "UNINJECT" << '\n';
+	std::cout << "UNINJECTED" << '\n';
 	FreeConsole();
 	FreeLibraryAndExitThread(hInstDll, 0);
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)  
 {
-	
 	switch (fdwReason)
 	{
 	case DLL_PROCESS_ATTACH:
 	{
 		hInstDll = hinstDLL;
-		CreateThread(nullptr, NULL, reinterpret_cast<LPTHREAD_START_ROUTINE>(Inject), nullptr, NULL, nullptr);
-
-		break;
+		CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)Inject, NULL, NULL, NULL);
 	}
+
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:
-	return TRUE;
+		break;
 	}
+	return TRUE;
+
 }
