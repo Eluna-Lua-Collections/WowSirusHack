@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <iostream>
 #include "sdk.h"
+#include "DllMain.h"
 #include <vector>
 HMODULE hInstDll;
 
@@ -36,9 +37,9 @@ void Inject()
 
 	unsigned baseAddr = (unsigned)(GetModuleHandle(TEXT("run.exe"))) + 0x006DB754;
 	unsigned result = *(unsigned*)baseAddr + 0x38;
-	result = *(unsigned*)result + 0xA0 + 0x6B0;
+	result = *(unsigned*)result + 0x750;
 	//unsigned result = FindAddrByOffsets(baseAddr, std::vector<unsigned>(0x7a8, 0x430));
-	LocalPlayer* player = (LocalPlayer*)result;
+	C_BaseEntityStruct* player = (C_BaseEntityStruct*)result;
 	std::cout << result << '\n';
 	while (!GetAsyncKeyState(VK_DELETE) & 1)
 	{
@@ -54,7 +55,7 @@ void Inject()
 			else
 			{
 
-				player->Speed = 7;
+				player->Speed = DEFAULT_SPEED_PLAYER;
 				speedON = FALSE;
 				std::cout << "speedOFF" << '\n';
 			}
