@@ -9,6 +9,31 @@
 #include "../imgGui/imgui_impl_dx9.h"
 #include "../imgGui/imgui_impl_win32.h"
 
+int speed = 0;
+
+bool state = false;
+
+
+
+
+
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+typedef LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
+WNDPROC oWndProc;
+
+
+LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+
+	if (state)
+	{
+		ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
+		return true;
+	}
+
+	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
+}
+
+
 
 const char* windowName = "World of Warcraft";
 
@@ -26,29 +51,45 @@ HMODULE hInstDll;
 
 HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) // our hooked endscene
 {
-	static bool init = true;
-	if (init)
+	if (GetAsyncKeyState(VK_NUMPAD0) & 1 )
 	{
-		init = false;
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO();
-
-		ImGui_ImplWin32_Init(FindWindowA(NULL, windowName));
-		ImGui_ImplDX9_Init(pDevice);
+		state = !state;
 	}
 
+	if (state)
+	{
+		static bool init = true;
+		if (init)
+		{
+			init = false;
+			ImGui::CreateContext();
+			ImGuiIO& io = ImGui::GetIO();
 
-	ImGui_ImplDX9_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
-	ImGui::Text("Hello, world!");
+			ImGui_ImplWin32_Init(FindWindowA(NULL, windowName));
+			ImGui_ImplDX9_Init(pDevice);
+		}
 
 
-	ImGui::EndFrame();
-	ImGui::Render();
+		ImGui_ImplDX9_NewFrame();
+		ImGui_ImplWin32_NewFrame();
+		ImGui::NewFrame();
+		std::cout << speed << "\n";
+		ImGui::GetIO().MouseDrawCursor;
 
-	ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
 
+		ImGui::Begin("project 22", NULL, 0);
+		ImGui::SliderInt("Speed", &speed, 0, 100);
+
+		ImGui::End();
+		ImGui::EndFrame();
+		ImGui::Render();
+
+		ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+
+
+
+		
+	}
 
 	return oEndScene(pDevice); // call original ensdcene so the game can draw
 }
@@ -58,6 +99,8 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) // our hooked ends
 void Inject()
 {
 
+	HWND  window = FindWindowA(NULL, windowName);
+	oWndProc = (WNDPROC)SetWindowLongPtr(window, GWL_WNDPROC, (LONG_PTR)WndProc);
 
 	ImportantCoords::Ogrimmar OgrMr;
 	CreateConsole();
@@ -85,6 +128,8 @@ void Inject()
 	void** vTable = *reinterpret_cast<void***>(pDevice);
 
 	//now detour:
+
+
 
 	oEndScene = (f_EndScene)DetourFunction((PBYTE)vTable[42], (PBYTE)Hooked_EndScene);
 
