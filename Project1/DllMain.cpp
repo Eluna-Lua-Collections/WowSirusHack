@@ -20,7 +20,7 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) 
 {
-	if (GetAsyncKeyState(VK_F5) & 1 )
+	if (GetAsyncKeyState(VK_NUMPAD0) & 1 )
 		MyMenu.ToggleStateMenu();
 
 	if (MyMenu.GetStateMenu())
@@ -36,7 +36,9 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice)
 			ImGui_ImplDX9_Init(pDevice);
 		}
 		MyMenu.DrawMenu(speedHackStruct.AddToSpeed, speedHackStruct.isActive);
+#ifdef DEBUG
 		std::cout << speedHackStruct.AddToSpeed << '\n';
+#endif
 	}
 	////////////////////////speed////////////////////////////////
 
@@ -54,7 +56,6 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice)
 		CheckChangeSpeedPlayer(player, speedHackStruct);
 	}
 
-
 	////////////////////////speed////////////////////////////////
 
 	return oEndScene(pDevice); 
@@ -64,9 +65,10 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice)
 
 void Inject()
 {
+#ifdef DEBUG
 	CreateConsole();
 	std::cout << "INJECTED" << '\n';
-
+#endif
 
 	HWND  window = FindWindowA(NULL, windowName);
 	oWndProc = (WNDPROC)SetWindowLongPtr(window, GWL_WNDPROC, (LONG_PTR)WndProc);
@@ -92,15 +94,6 @@ void Inject()
 	pDevice->Release();
 	pD3D->Release();
 
-
-	//while (!GetAsyncKeyState(VK_DELETE) & 1)
-	//{
-		
-		
-	//}
-	//std::cout << "UNINJECTED" << '\n';
-	//FreeConsole();
-	//FreeLibraryAndExitThread(hInstDll, 0);
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
@@ -121,11 +114,11 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	return TRUE;
 }
 
-
-
+#ifdef DEBUG
 void CreateConsole()
 {
 	AllocConsole();
 	FILE *f;
 	freopen_s(&f, "CONOUT$", "w", stdout);
 }
+#endif

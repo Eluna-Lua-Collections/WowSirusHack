@@ -17,15 +17,30 @@ void Menu::DrawMenu(int& AddToSpeed, bool& isActive)
 	ImGui::Begin("project 22", NULL, 0);
 	ImGui::Checkbox("SpeedHack", &isActive);
 	ImGui::SliderInt("Speed", &AddToSpeed, 0, 100);
+
 	ImGui::BeginTabBar("Tabbar");
 	ImGui::EndTabBar();
 
 	ImGui::BeginMainMenuBar();
 	ImGui::Text("Coded by ");
-	ImGui::Button("Mediocrity");
+	if (ImGui::Button("q1q1q1q1q1q1q1"))
+		ShellExecute(NULL, L"open", L"https://github.com/q1q1q1q1q1q1q1", NULL, NULL, SW_SHOW);
 	ImGui::EndMainMenuBar();
 
 
+	if (ImGui::CollapsingHeader("Ogrimmar"))
+	{
+		ImGui::Button("Teleporting");
+	}
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
+	ImGui::CollapsingHeader("Пустош");
 	ImGui::End();
 	ImGui::EndFrame();
 	ImGui::Render();

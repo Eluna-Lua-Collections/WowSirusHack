@@ -1,5 +1,11 @@
 #pragma once
 
+#define DEBUG
+
+#ifdef DEBUG
+	#include <iostream>
+#endif
+
 
 #include "sdk.h"
 #include "DllMain.h"
@@ -7,7 +13,7 @@
 #include "Menu.h"
 
 #include <Windows.h>
-#include <iostream>
+
 #include <vector>
 
 #include "detours.h"
