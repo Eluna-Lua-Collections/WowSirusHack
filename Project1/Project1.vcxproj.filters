@@ -42,13 +42,13 @@
     <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui.cpp">
       <Filter>imGui</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sdk.h">
       <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="DllMain.h">
-      <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Func.h">
       <Filter>Файлы заголовков</Filter>
@@ -79,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui.h">
       <Filter>imGui</Filter>
+    </ClInclude>
+    <ClInclude Include="DllMain.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

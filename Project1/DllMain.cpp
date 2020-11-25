@@ -1,62 +1,29 @@
-#include <Windows.h>
-#include <iostream>
-#include "sdk.h"
 #include "DllMain.h"
-#include <vector>
-#include "detours.h"
-
-#include "../imgGui/imgui.h"
-#include "../imgGui/imgui_impl_dx9.h"
-#include "../imgGui/imgui_impl_win32.h"
-
-int speed = 0;
-
-bool state = false;
-
-
-
-
-
-extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-typedef LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
+SpeedHack speedHackStruct;
+Menu MyMenu;
+const char* windowName = "World of Warcraft";
+f_EndScene oEndScene;
+HMODULE hInstDll;
 WNDPROC oWndProc;
 
 
 LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
-	if (state)
+	if (MyMenu.GetStateMenu())
 	{
 		ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
 		return true;
 	}
-
 	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
 
 
-
-const char* windowName = "World of Warcraft";
-
-
-#include <d3d9.h>
-
-#pragma comment(lib, "d3d9.lib")
-#pragma comment(lib, "d3dx9.lib")
-#pragma comment(lib, "detours.lib")
-
-typedef HRESULT(__stdcall * f_EndScene)(IDirect3DDevice9 * pDevice); // our function prototype 
-f_EndScene oEndScene; // original endscene
-HMODULE hInstDll;
-
-
-HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) // our hooked endscene
+HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) 
 {
 	if (GetAsyncKeyState(VK_NUMPAD0) & 1 )
-	{
-		state = !state;
-	}
+		MyMenu.ToggleStateMenu();
 
-	if (state)
+	if (MyMenu.GetStateMenu())
 	{
 		static bool init = true;
 		if (init)
@@ -68,46 +35,23 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) // our hooked ends
 			ImGui_ImplWin32_Init(FindWindowA(NULL, windowName));
 			ImGui_ImplDX9_Init(pDevice);
 		}
-
-
-		ImGui_ImplDX9_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
-		std::cout << speed << "\n";
-		ImGui::GetIO().MouseDrawCursor;
-
-
-		ImGui::Begin("project 22", NULL, 0);
-		ImGui::SliderInt("Speed", &speed, 0, 100);
-
-		ImGui::End();
-		ImGui::EndFrame();
-		ImGui::Render();
-
-		ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
-
-
-
-		
+		MyMenu.DrawMenu(speedHackStruct.AddToSpeed);
+		std::cout << speedHackStruct.AddToSpeed << '\n';
 	}
 
-	return oEndScene(pDevice); // call original ensdcene so the game can draw
+	return oEndScene(pDevice); 
 }
 
 
 
 void Inject()
 {
+	CreateConsole();
+	std::cout << "INJECTED" << '\n';
+	C_BaseEntityStruct* player = GetPlayer();
 
 	HWND  window = FindWindowA(NULL, windowName);
 	oWndProc = (WNDPROC)SetWindowLongPtr(window, GWL_WNDPROC, (LONG_PTR)WndProc);
-
-	ImportantCoords::Ogrimmar OgrMr;
-	CreateConsole();
-	std::cout << "INJECTED" << '\n';
-
-	C_BaseEntityStruct* player = GetPlayer();
-
 	IDirect3D9* pD3D = Direct3DCreate9(D3D_SDK_VERSION); // create IDirect3D9 object
 	if (!pD3D)
 		return;
@@ -124,20 +68,11 @@ void Inject()
 		pD3D->Release();
 		return;
 	}
-	//if device creation worked out -> lets get the virtual table:
+
 	void** vTable = *reinterpret_cast<void***>(pDevice);
-
-	//now detour:
-
-
-
 	oEndScene = (f_EndScene)DetourFunction((PBYTE)vTable[42], (PBYTE)Hooked_EndScene);
-
 	pDevice->Release();
 	pD3D->Release();
-
-
-
 
 
 	//while (!GetAsyncKeyState(VK_DELETE) & 1)

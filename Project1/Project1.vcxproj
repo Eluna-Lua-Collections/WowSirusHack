@@ -135,6 +135,7 @@
     <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="DllMain.cpp" />
     <ClCompile Include="Func.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imconfig.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="detours.h" />
     <ClInclude Include="DllMain.h" />
     <ClInclude Include="Func.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="sdk.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
