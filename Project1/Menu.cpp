@@ -6,7 +6,7 @@ void Menu::ToggleStateMenu()
 }
 
 
-void Menu::DrawMenu(int& AddToSpeed)
+void Menu::DrawMenu(int& AddToSpeed, bool& isActive)
 {
 	ImGui_ImplDX9_NewFrame();
 	ImGui_ImplWin32_NewFrame();
@@ -15,7 +15,16 @@ void Menu::DrawMenu(int& AddToSpeed)
 
 
 	ImGui::Begin("project 22", NULL, 0);
+	ImGui::Checkbox("SpeedHack", &isActive);
 	ImGui::SliderInt("Speed", &AddToSpeed, 0, 100);
+	ImGui::BeginTabBar("Tabbar");
+	ImGui::EndTabBar();
+
+	ImGui::BeginMainMenuBar();
+	ImGui::Text("Coded by ");
+	ImGui::Button("Mediocrity");
+	ImGui::EndMainMenuBar();
+
 
 	ImGui::End();
 	ImGui::EndFrame();

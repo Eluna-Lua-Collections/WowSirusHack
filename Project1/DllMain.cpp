@@ -20,7 +20,7 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) 
 {
-	if (GetAsyncKeyState(VK_NUMPAD0) & 1 )
+	if (GetAsyncKeyState(VK_F5) & 1 )
 		MyMenu.ToggleStateMenu();
 
 	if (MyMenu.GetStateMenu())
@@ -35,9 +35,27 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice)
 			ImGui_ImplWin32_Init(FindWindowA(NULL, windowName));
 			ImGui_ImplDX9_Init(pDevice);
 		}
-		MyMenu.DrawMenu(speedHackStruct.AddToSpeed);
+		MyMenu.DrawMenu(speedHackStruct.AddToSpeed, speedHackStruct.isActive);
 		std::cout << speedHackStruct.AddToSpeed << '\n';
 	}
+	////////////////////////speed////////////////////////////////
+
+	if (speedHackStruct.CurrentSpeed - speedHackStruct.DefaultSpeedPlayer != speedHackStruct.AddToSpeed && speedHackStruct.isActive)
+	{
+		C_BaseEntityStruct* player = GetPlayer();
+		speedHackStruct.CurrentSpeed = speedHackStruct.DefaultSpeedPlayer + speedHackStruct.AddToSpeed;
+		CheckChangeSpeedPlayer(player, speedHackStruct);
+	}
+
+	if (speedHackStruct.AddToSpeed == 0 && speedHackStruct.CurrentSpeed != 0 && speedHackStruct.isActive)
+	{
+		C_BaseEntityStruct* player = GetPlayer();
+		speedHackStruct.CurrentSpeed = speedHackStruct.DefaultSpeedPlayer;
+		CheckChangeSpeedPlayer(player, speedHackStruct);
+	}
+
+
+	////////////////////////speed////////////////////////////////
 
 	return oEndScene(pDevice); 
 }
@@ -48,11 +66,11 @@ void Inject()
 {
 	CreateConsole();
 	std::cout << "INJECTED" << '\n';
-	C_BaseEntityStruct* player = GetPlayer();
+
 
 	HWND  window = FindWindowA(NULL, windowName);
 	oWndProc = (WNDPROC)SetWindowLongPtr(window, GWL_WNDPROC, (LONG_PTR)WndProc);
-	IDirect3D9* pD3D = Direct3DCreate9(D3D_SDK_VERSION); // create IDirect3D9 object
+	IDirect3D9* pD3D = Direct3DCreate9(D3D_SDK_VERSION);
 	if (!pD3D)
 		return;
 

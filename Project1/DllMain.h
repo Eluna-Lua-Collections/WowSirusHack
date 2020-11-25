@@ -27,10 +27,6 @@ typedef LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
 typedef HRESULT(__stdcall * f_EndScene)(IDirect3DDevice9 * pDevice); 
 
 
-
-
-
-
 namespace ImportantCoords {
 	struct Ogrimmar {
 		float x = 1668.38;
@@ -44,8 +40,3 @@ namespace ImportantCoords {
 }
 void CreateConsole();
 
-
-struct SpeedHack {
-	int DefaultSpeedPlauer = 7;
-	int AddToSpeed = 0;
-};

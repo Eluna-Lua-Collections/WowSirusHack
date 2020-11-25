@@ -21,3 +21,9 @@ C_BaseEntityStruct * GetPlayer()
 	result = *(unsigned*)result + 0x750;
 	return reinterpret_cast<C_BaseEntityStruct*>(result);
 }
+
+void CheckChangeSpeedPlayer(C_BaseEntityStruct* player, SpeedHack& speedStruct)
+{
+	player->Speed = speedStruct.CurrentSpeed;
+}
+
