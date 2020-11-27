@@ -14,5 +14,6 @@ struct SpeedHack {
 unsigned FindAddrByOffsets(unsigned baseAdr, std::vector<unsigned> offsets);
 C_BaseEntityStruct* GetPlayer();
 void CheckChangeSpeedPlayer(C_BaseEntityStruct*, SpeedHack& speedStruct);
+void Teleport(float x, float y, float z);
 
 

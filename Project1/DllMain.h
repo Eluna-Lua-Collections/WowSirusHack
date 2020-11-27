@@ -1,6 +1,5 @@
 #pragma once
 
-#define DEBUG
 
 #ifdef DEBUG
 	#include <iostream>
@@ -31,18 +30,6 @@ extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam
 
 typedef LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
 typedef HRESULT(__stdcall * f_EndScene)(IDirect3DDevice9 * pDevice); 
-
-
-namespace ImportantCoords {
-	struct Ogrimmar {
-		float x = 1668.38;
-		float y = -4434.13;
-		float z = 19.6286;
-	};
-
-	struct Dalaran {
-
-	};
-}
 void CreateConsole();
+void initAllBulletForTpAout();
 

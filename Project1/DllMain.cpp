@@ -36,6 +36,7 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice)
 			ImGui_ImplDX9_Init(pDevice);
 		}
 		MyMenu.DrawMenu(speedHackStruct.AddToSpeed, speedHackStruct.isActive);
+
 #ifdef DEBUG
 		std::cout << speedHackStruct.AddToSpeed << '\n';
 #endif
@@ -114,6 +115,13 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	return TRUE;
 }
 
+void initAllBulletForTpAout()
+{
+
+
+
+}
+
 #ifdef DEBUG
 void CreateConsole()
 {
@@ -122,3 +130,5 @@ void CreateConsole()
 	freopen_s(&f, "CONOUT$", "w", stdout);
 }
 #endif
+
+

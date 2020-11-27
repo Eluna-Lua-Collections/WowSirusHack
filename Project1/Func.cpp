@@ -27,3 +27,11 @@ void CheckChangeSpeedPlayer(C_BaseEntityStruct* player, SpeedHack& speedStruct)
 	player->Speed = speedStruct.CurrentSpeed;
 }
 
+void Teleport(float x, float y, float z)
+{
+	C_BaseEntityStruct* player = GetPlayer();
+	player->CoordX = x;
+	player->CoordY = y;
+	player->CoordZ = z;
+}
+
