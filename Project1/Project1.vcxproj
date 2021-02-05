@@ -148,6 +148,7 @@
     <ClInclude Include="..\imgGui\imstb_truetype.h" />
     <ClInclude Include="detours.h" />
     <ClInclude Include="DllMain.h" />
+    <ClInclude Include="EasyLog.h" />
     <ClInclude Include="Func.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="sdk.h" />

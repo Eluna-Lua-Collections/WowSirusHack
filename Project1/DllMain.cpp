@@ -1,4 +1,5 @@
 #include "DllMain.h"
+#include "EasyLog.h"
 SpeedHack speedHackStruct;
 Menu MyMenu;
 const char* windowName = "World of Warcraft";
@@ -6,7 +7,7 @@ f_EndScene oEndScene;
 HMODULE hInstDll;
 WNDPROC oWndProc;
 
-
+#define DEBUG
 LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 	if (MyMenu.GetStateMenu())
@@ -20,8 +21,12 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) 
 {
-	if (GetAsyncKeyState(VK_NUMPAD0) & 1 )
-		MyMenu.ToggleStateMenu();
+    if (GetAsyncKeyState(VK_NUMPAD0) & 1)
+    {
+        std::cout << "VK_NUMPAD0 PRESSED" << '\n';
+        MyMenu.ToggleStateMenu();
+    }
+		
 
 	if (MyMenu.GetStateMenu())
 	{
