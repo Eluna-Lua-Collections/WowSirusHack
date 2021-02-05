@@ -127,25 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui.cpp" />
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_demo.cpp" />
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_draw.cpp" />
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_dx9.cpp" />
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_win32.cpp" />
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="..\imgGui\imgui.cpp" />
+    <ClCompile Include="..\imgGui\imgui_demo.cpp" />
+    <ClCompile Include="..\imgGui\imgui_draw.cpp" />
+    <ClCompile Include="..\imgGui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="..\imgGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\imgGui\imgui_widgets.cpp" />
     <ClCompile Include="DllMain.cpp" />
     <ClCompile Include="Func.cpp" />
     <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imconfig.h" />
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui.h" />
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_dx9.h" />
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_win32.h" />
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_internal.h" />
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imstb_rectpack.h" />
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imstb_textedit.h" />
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imstb_truetype.h" />
+    <ClInclude Include="..\imgGui\imconfig.h" />
+    <ClInclude Include="..\imgGui\imgui.h" />
+    <ClInclude Include="..\imgGui\imgui_impl_dx9.h" />
+    <ClInclude Include="..\imgGui\imgui_impl_win32.h" />
+    <ClInclude Include="..\imgGui\imgui_internal.h" />
+    <ClInclude Include="..\imgGui\imstb_rectpack.h" />
+    <ClInclude Include="..\imgGui\imstb_textedit.h" />
+    <ClInclude Include="..\imgGui\imstb_truetype.h" />
     <ClInclude Include="detours.h" />
     <ClInclude Include="DllMain.h" />
     <ClInclude Include="Func.h" />

@@ -1,90 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="imgGui">
+      <UniqueIdentifier>{0ac32a63-cc68-4a89-bce2-6b98aba0fc64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков">
+    <Filter Include="Header">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов">
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resources">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="imGui">
-      <UniqueIdentifier>{7e127d08-e8e3-400f-92c0-2dc92d6ce195}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllMain.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Func.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_demo.cpp">
-      <Filter>imGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_draw.cpp">
-      <Filter>imGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_dx9.cpp">
-      <Filter>imGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_win32.cpp">
-      <Filter>imGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_widgets.cpp">
-      <Filter>imGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui.cpp">
-      <Filter>imGui</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgGui\imgui.cpp">
+      <Filter>imgGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgGui\imgui_demo.cpp">
+      <Filter>imgGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgGui\imgui_draw.cpp">
+      <Filter>imgGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgGui\imgui_impl_dx9.cpp">
+      <Filter>imgGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgGui\imgui_impl_win32.cpp">
+      <Filter>imgGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgGui\imgui_widgets.cpp">
+      <Filter>imgGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sdk.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Func.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="detours.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_dx9.h">
-      <Filter>imGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_impl_win32.h">
-      <Filter>imGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui_internal.h">
-      <Filter>imGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imstb_rectpack.h">
-      <Filter>imGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imstb_textedit.h">
-      <Filter>imGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imstb_truetype.h">
-      <Filter>imGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imconfig.h">
-      <Filter>imGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\DirectX9-ImGui-Implementation-Hook-master\ImGui\imgui.h">
-      <Filter>imGui</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="DllMain.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imconfig.h">
+      <Filter>imgGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imgui.h">
+      <Filter>imgGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imgui_impl_dx9.h">
+      <Filter>imgGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imgui_impl_win32.h">
+      <Filter>imgGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imgui_internal.h">
+      <Filter>imgGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imstb_rectpack.h">
+      <Filter>imgGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imstb_textedit.h">
+      <Filter>imgGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgGui\imstb_truetype.h">
+      <Filter>imgGui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
